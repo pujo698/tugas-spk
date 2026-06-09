@@ -7,6 +7,45 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## Cara Menjalankan Aplikasi (Local Setup)
+
+Ikuti langkah-langkah berikut untuk menjalankan aplikasi ini di komputer lokal Anda setelah melakukan clone repository.
+
+### Prasyarat
+Pastikan Anda telah menginstal perangkat lunak berikut:
+- **PHP** (minimal versi 8.3)
+- **Composer**
+- **Node.js** dan **npm**
+
+### Langkah-langkah Instalasi
+
+1. **Clone Repository**
+   Buka terminal dan jalankan perintah berikut:
+   ```bash
+   git clone <url-repository>
+   cd tugas-spk
+   ```
+
+2. **Jalankan Setup Otomatis**
+   Aplikasi ini telah dilengkapi dengan script setup otomatis. Anda cukup menjalankan satu perintah berikut untuk menginstal dependensi (PHP & Node.js), menyalin `.env`, men-generate key, dan menjalankan migrasi:
+   ```bash
+   composer setup
+   ```
+   *(Catatan: Aplikasi ini menggunakan database **SQLite** secara default, sehingga file database akan terbuat otomatis saat migrasi berjalan dan tidak perlu setup server database terpisah).*
+
+3. **Jalankan Development Server**
+   Setelah proses setup selesai, Anda bisa menjalankan server pengembangan dengan perintah:
+   ```bash
+   composer dev
+   ```
+   *(Perintah di atas akan menjalankan `php artisan serve` dan `npm run dev` secara bersamaan).*
+
+4. **Akses Aplikasi**
+   Buka browser Anda dan kunjungi URL berikut:
+   **[http://localhost:8000](http://localhost:8000)**
+
+---
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:

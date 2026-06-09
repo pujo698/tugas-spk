@@ -39,6 +39,13 @@
                 }
             </script>
 
+            <form id="import-form" action="{{ route('students.import') }}" method="POST" enctype="multipart/form-data" style="display:none;">
+                @csrf
+                <input type="file" name="file" id="import-file" accept=".xlsx, .xls, .csv" onchange="document.getElementById('import-form').submit()">
+            </form>
+            <button type="button" class="btn-primary" style="padding:9px 16px; background:#10b981; border-color:#10b981;" onclick="document.getElementById('import-file').click()">
+                <i data-lucide="file-spreadsheet" style="width:16px; height:16px;"></i> Import Excel
+            </button>
             <a href="{{ route('students.create') }}" class="btn-primary" style="padding:9px 16px;">
                 <i data-lucide="plus" style="width:16px; height:16px;"></i> Tambah Data
             </a>

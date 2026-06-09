@@ -8,6 +8,7 @@ use App\Http\Controllers\AssessmentController;
 
 Route::get('/', [DssController::class, 'dashboard'])->name('dashboard');
 
+Route::post('students/import', [StudentController::class, 'import'])->name('students.import');
 Route::resource('students', StudentController::class);
 Route::resource('criteria', CriterionController::class);
 Route::get('assessments', [AssessmentController::class, 'index'])->name('assessments.index');

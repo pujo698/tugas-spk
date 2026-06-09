@@ -64,4 +64,18 @@ class StudentController extends Controller
         $student->delete();
         return redirect()->route('students.index')->with('success', 'Data Mahasiswa berhasil dihapus.');
     }
+
+    public function import(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:xlsx,xls,csv|max:10240',
+        ]);
+
+        try {
+            \Maatwebsite\Excel\Facades\Excel::import(new \App\Imports\StudentsImport, $request->file('file'));
+            return redirect()->route('students.index')->with('success', 'Data Mahasiswa berhasil diimport.');
+        } catch (\Exception $e) {
+            return redirect()->route('students.index')->with('error', 'Gagal mengimport data: ' . $e->getMessage());
+        }
+    }
 }

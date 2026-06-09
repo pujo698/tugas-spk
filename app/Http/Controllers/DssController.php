@@ -9,12 +9,7 @@ use App\Models\Assessment;
 
 class DssController extends Controller
 {
-    public function dashboard()
-    {
-        return view('dashboard');
-    }
-
-    public function calculation()
+    private function calculateSAW()
     {
         $students = Student::with('assessments')->get();
         $criteria = Criterion::all();
@@ -69,6 +64,31 @@ class DssController extends Controller
             return $item2['score'] <=> $item1['score'];
         });
 
-        return view('calculation.index', compact('students', 'criteria', 'matrix', 'normalizedMatrix', 'finalScores'));
+        return [
+            'students' => $students,
+            'criteria' => $criteria,
+            'matrix' => $matrix,
+            'normalizedMatrix' => $normalizedMatrix,
+            'finalScores' => $finalScores
+        ];
+    }
+
+    public function dashboard()
+    {
+        $totalStudents = Student::count();
+        $totalCriteria = Criterion::count();
+        $totalAssessments = Assessment::count();
+        
+        $sawData = $this->calculateSAW();
+        $topCandidates = array_slice($sawData['finalScores'], 0, 3);
+        $bestCandidate = count($topCandidates) > 0 ? $topCandidates[0] : null;
+
+        return view('dashboard', compact('totalStudents', 'totalCriteria', 'totalAssessments', 'topCandidates', 'bestCandidate'));
+    }
+
+    public function calculation()
+    {
+        $sawData = $this->calculateSAW();
+        return view('calculation.index', $sawData);
     }
 }

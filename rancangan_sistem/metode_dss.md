@@ -1,8 +1,8 @@
 # Metode Decision Support System (DSS)
 
-Berdasarkan analisis file sumber `app/Http/Controllers/DssController.php`, sistem pendukung keputusan ini menerapkan metode **Simple Additive Weighting (SAW)**.
+Berdasarkan analisis file sumber `app/Http/Controllers/DssController.php`, sistem pendukung keputusan rekomendasi beasiswa akademik ini menerapkan metode **Simple Additive Weighting (SAW)**.
 
-Metode SAW sering juga dikenal sebagai metode penjumlahan terbobot. Konsep dasar metode SAW adalah mencari penjumlahan terbobot dari rating kinerja pada setiap alternatif (mahasiswa) pada semua atribut (kriteria).
+Metode SAW sering juga dikenal sebagai metode penjumlahan terbobot. Konsep dasar metode SAW adalah mencari penjumlahan terbobot dari rating kinerja pada setiap alternatif (calon penerima beasiswa) pada semua atribut (kriteria).
 
 ## Konsep Metode SAW
 Metode SAW membutuhkan proses normalisasi matriks keputusan ke suatu skala yang dapat diperbandingkan dengan semua rating alternatif yang ada.
@@ -12,12 +12,12 @@ Metode SAW membutuhkan proses normalisasi matriks keputusan ke suatu skala yang 
 2. Menentukan rating kecocokan (matriks keputusan) setiap alternatif pada setiap kriteria.
 3. Melakukan normalisasi matriks (R) berdasarkan persamaan normalisasi, yang tergantung pada tipe kriteria (*benefit* atau *cost*).
 4. Menghitung nilai preferensi (V) atau hasil akhir dari setiap alternatif dengan menjumlahkan hasil kali normalisasi matriks dengan bobot kriteria.
-5. Melakukan perangkingan.
+5. Melakukan perangkingan untuk menghasilkan rekomendasi penerima beasiswa.
 
 ## Rumus Normalisasi
 
 ### Kriteria Benefit (Keuntungan)
-Jika kriteria bertipe **benefit** (semakin besar nilai semakin bagus, misalnya IPK):
+Jika kriteria bertipe **benefit** (semakin besar nilai semakin bagus, misalnya IPK atau Prestasi Non-Akademik):
 `R_ij = X_ij / Max(X_ij)`
 
 ### Kriteria Cost (Biaya)
@@ -26,10 +26,10 @@ Jika kriteria bertipe **cost** (semakin kecil nilai semakin bagus, misalnya Peng
 
 ## Rumus Nilai Preferensi (Hasil Akhir)
 `V_i = Σ (W_j * R_ij)`
-* Keterangan: `V_i` adalah skor untuk alternatif mahasiswa ke-`i`, `W_j` adalah bobot kriteria ke-`j`, dan `R_ij` adalah nilai normalisasi.
+* Keterangan: `V_i` adalah skor preferensi untuk calon ke-`i`, `W_j` adalah bobot kriteria ke-`j`, dan `R_ij` adalah nilai normalisasi.
 
 ## Implementasi Source Code
-File yang mengelola perhitungan algoritma ini adalah `app/Http/Controllers/DssController.php` pada *method* `calculateSAW()`.
+File yang mengelola perhitungan algoritma seleksi beasiswa ini adalah `app/Http/Controllers/DssController.php` pada *method* `calculateSAW()`.
 
 Berikut adalah ringkasan potongan kode implementasinya:
 
@@ -74,8 +74,8 @@ $finalScores[$student->id] = [
 ];
 ```
 
-### 4. Perangkingan
-Skor akhir dikelompokkan ke array lalu diurutkan dari skor terbesar (Descending).
+### 4. Perangkingan Rekomendasi
+Skor akhir dikelompokkan ke array lalu diurutkan dari skor terbesar (Descending) untuk menghasilkan daftar urutan prioritas penerima beasiswa akademik.
 ```php
 usort($finalScores, function ($item1, $item2) {
     return $item2['score'] <=> $item1['score'];

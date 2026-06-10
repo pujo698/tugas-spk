@@ -1,6 +1,6 @@
 # Activity Diagram
 
-Diagram aktivitas di bawah ini menjelaskan aliran kerja (workflow) spesifik antara aktor (Admin) dengan Sistem selama proses pengelolaan penilaian hingga tahap munculnya rekomendasi keputusan.
+Diagram aktivitas di bawah ini menjelaskan aliran kerja (workflow) spesifik antara aktor (Admin) dengan Sistem selama proses pengelolaan penilaian hingga tahap munculnya rekomendasi keputusan penerima beasiswa akademik.
 
 ```mermaid
 stateDiagram-v2
@@ -29,7 +29,7 @@ stateDiagram-v2
     Sistem_Simpan_Database --> Admin_Buka_Menu_Kalkulasi
 
     state Admin_Buka_Menu_Kalkulasi {
-        [*] --> Klik_Hasil_Kalkulasi
+        [*] --> Klik_Hasil_Kalkulasi_Beasiswa
     }
 
     Admin_Buka_Menu_Kalkulasi --> Sistem_Hitung_SAW
@@ -39,16 +39,16 @@ stateDiagram-v2
         Ambil_Data_Penilaian --> Cari_Min_Max
         Cari_Min_Max --> Lakukan_Normalisasi
         Lakukan_Normalisasi --> Hitung_Total_Preferensi
-        Hitung_Total_Preferensi --> Urutkan_Ranking
-        Urutkan_Ranking --> Tampilkan_Halaman_Hasil
+        Hitung_Total_Preferensi --> Urutkan_Ranking_Beasiswa
+        Urutkan_Ranking_Beasiswa --> Tampilkan_Daftar_Rekomendasi
     }
 
     Sistem_Hitung_SAW --> [*]
 ```
 
 ## Penjelasan Langkah
-1. **Buka Menu Penilaian:** Admin masuk ke halaman Assessments, kemudian Sistem menampilkan grid tabel/matriks yang mempertemukan mahasiswa dengan kriteria.
-2. **Input Nilai:** Admin memasukkan atau merevisi nilai yang ada pada grid, dan menekan tombol simpan.
+1. **Buka Menu Penilaian:** Admin masuk ke halaman Assessments, kemudian Sistem menampilkan grid tabel/matriks yang mempertemukan calon penerima beasiswa dengan kriteria seleksi.
+2. **Input Nilai:** Admin memasukkan atau merevisi nilai (seperti IPK, nominal penghasilan) yang ada pada grid, dan menekan tombol simpan.
 3. **Simpan ke Database:** Sistem menangkap seluruh kumpulan (array) data masukan, kemudian menyimpannya ke tabel `assessments` melalui logika *update or create*.
-4. **Buka Menu Kalkulasi:** Setelah data nilai disimpan, Admin berpindah ke menu Kalkulasi (Calculation).
-5. **Hitung SAW:** Saat menu diakses, Sistem mengeksekusi algoritma *Simple Additive Weighting* pada saat itu juga (on-the-fly) lalu menampilkan hasilnya secara urut ke layar.
+4. **Buka Menu Kalkulasi:** Setelah data nilai disimpan, Admin berpindah ke menu Kalkulasi (Calculation) untuk memproses seleksi beasiswa.
+5. **Hitung SAW:** Saat menu diakses, Sistem mengeksekusi algoritma *Simple Additive Weighting* pada saat itu juga (on-the-fly) lalu menampilkan hasil rekomendasi secara urut ke layar.

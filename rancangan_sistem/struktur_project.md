@@ -70,4 +70,4 @@ Direktori ini berisi kode presentasi (antarmuka / UI) menggunakan Blade.
 2. **Modul Penilaian (Assessments):**
    * Sangat bergantung pada data Master. Halaman ini (`AssessmentController`) mengambil seluruh entitas *Student* dan *Criterion* yang aktif untuk dirender sebagai sebuah grid matriks input.
 3. **Modul DSS (Calculation & Dashboard):**
-   * Bergantung penuh pada ketiga entitas (Students, Criteria, dan Assessments). *DssController* membaca semua data yang telah diinputkan, memproses nilai berdasarkan jenis kriteria (benefit/cost) serta bobotnya menggunakan metode SAW, kemudian mengirimkan hasil *array* yang berisikan urutan mahasiswa kepada file tampilan (View) untuk ditampilkan.
+   * Bergantung penuh pada ketiga entitas (Students, Criteria, dan Assessments). *DssController* membaca semua data yang telah diinputkan, memproses nilai berdasarkan jenis kriteria (benefit/cost) serta bobotnya menggunakan metode SAW, kemudian mengirimkan hasil *array* yang berisikan urutan calon penerima beasiswa kepada file tampilan (View) untuk ditampilkan.

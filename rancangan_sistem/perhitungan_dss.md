@@ -1,6 +1,6 @@
 # Simulasi Perhitungan DSS
 
-Berikut adalah dokumentasi simulasi manual dari algoritma SAW, persis seperti yang dihitung oleh sistem secara *backend*, menggunakan sampel data (seed data) dari `DatabaseSeeder.php`.
+Berikut adalah dokumentasi simulasi manual dari algoritma SAW, persis seperti yang dihitung oleh sistem secara *backend*, menggunakan sampel data (seed data) dari `DatabaseSeeder.php` untuk seleksi penerima beasiswa akademik.
 
 ## 1. Kriteria dan Bobot
 * **C1 (Benefit):** IPK, Bobot = 0.35
@@ -8,7 +8,7 @@ Berikut adalah dokumentasi simulasi manual dari algoritma SAW, persis seperti ya
 * **C3 (Benefit):** Tanggungan Anak, Bobot = 0.20
 * **C4 (Benefit):** Prestasi Non-Akademik, Bobot = 0.20
 
-## 2. Alternatif (Mahasiswa)
+## 2. Alternatif (Calon Penerima Beasiswa)
 * **A1:** Ahmad Budi
 * **A2:** Siti Nurhaliza
 * **A3:** Bambang Pamungkas
@@ -70,13 +70,13 @@ Kalikan hasil normalisasi dengan Bobot (C1=0.35, C2=0.25, C3=0.20, C4=0.20)
   = 0.3139 + 0.0750 + 0.0666 + 0.1556 = **0.6111**
 
 ## 6. Hasil Ranking
-Berdasarkan nilai Preferensi, maka sistem akan memberikan daftar rekomendasi sebagai berikut:
+Berdasarkan nilai Preferensi, maka sistem akan memberikan daftar rekomendasi penerima beasiswa sebagai berikut:
 
-| Peringkat | Mahasiswa | Skor Akhir |
+| Peringkat | Calon Penerima Beasiswa | Skor Akhir |
 | :---: | --------- | :---: |
 | **1** | **Siti Nurhaliza (A2)** | **0.9334** |
 | 2 | Ahmad Budi (A1) | 0.8547 |
 | 3 | Bambang Pamungkas (A3) | 0.6111 |
 
 **Kesimpulan Simulasi:**
-Sistem telah menghitung secara presisi, bahwa dengan memperhitungkan kombinasi benefit dan cost (Penghasilan Orang Tua) serta seluruh kriteria secara matematis, Siti Nurhaliza terpilih menjadi kandidat terbaik karena mendominasi nilai pada mayoritas kriteria, utamanya berkat kondisi penghasilan orang tua terkecil (cost terbaik) dan prestasi non-akademik tertinggi (benefit terbaik).
+Sistem telah menghitung secara presisi, bahwa dengan memperhitungkan kombinasi benefit (IPK, dll) dan cost (Penghasilan Orang Tua) serta seluruh kriteria secara matematis, Siti Nurhaliza direkomendasikan sebagai penerima beasiswa akademik terbaik karena mendominasi nilai pada mayoritas kriteria, utamanya berkat kondisi penghasilan orang tua terkecil (cost terbaik) dan prestasi non-akademik tertinggi (benefit terbaik).

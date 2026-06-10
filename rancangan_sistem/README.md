@@ -1,8 +1,8 @@
-# DSS Penentuan Mahasiswa Berprestasi
+# DSS Rekomendasi Penerima Beasiswa Akademik
 
 ## Tujuan Sistem
 
-Sistem Pendukung Keputusan (Decision Support System / DSS) ini dikembangkan untuk membantu pihak akademik dalam menentukan mahasiswa berprestasi secara objektif, terukur, transparan, dan konsisten. Sistem menggunakan metode Simple Additive Weighting (SAW) untuk mengevaluasi setiap mahasiswa berdasarkan berbagai kriteria, baik akademik maupun non-akademik, sehingga dapat menghasilkan rekomendasi mahasiswa terbaik.
+Sistem Pendukung Keputusan (Decision Support System / DSS) ini dikembangkan untuk membantu pihak kampus melakukan proses seleksi penerima beasiswa secara objektif, transparan, konsisten, dan berdasarkan data. Sistem menggunakan metode Simple Additive Weighting (SAW) untuk mengevaluasi setiap mahasiswa berdasarkan berbagai kriteria akademik dan ekonomi, sehingga dapat menghasilkan rekomendasi mahasiswa yang layak menerima beasiswa akademik.
 
 ## Teknologi
 
@@ -16,11 +16,11 @@ Sistem ini dikembangkan menggunakan teknologi:
 ## Ringkasan Fitur
 
 Berdasarkan analisis source code, sistem ini memiliki fitur-fitur berikut:
-1. **Dashboard:** Menampilkan ringkasan statistik (total mahasiswa, kriteria, penilaian) dan top kandidat mahasiswa berprestasi (Top 3).
+1. **Dashboard:** Menampilkan ringkasan statistik (total mahasiswa, kriteria, penilaian) dan top kandidat penerima beasiswa (Top 3).
 2. **Manajemen Mahasiswa:** Fitur CRUD (Create, Read, Update, Delete) data mahasiswa, pencarian data mahasiswa, serta import data mahasiswa menggunakan file Excel/CSV.
 3. **Manajemen Kriteria:** Fitur CRUD data kriteria penilaian, penentuan tipe kriteria (Benefit/Cost), dan pembobotan kriteria.
 4. **Manajemen Penilaian (Assessments):** Fitur untuk menginputkan nilai mahasiswa pada masing-masing kriteria yang telah ditentukan.
-5. **Perhitungan DSS & Ranking:** Fitur yang melakukan perhitungan dengan metode Simple Additive Weighting (SAW), menampilkan matriks awal, hasil normalisasi, dan nilai akhir/ranking mahasiswa.
+5. **Perhitungan DSS & Ranking:** Fitur yang melakukan perhitungan dengan metode Simple Additive Weighting (SAW), menampilkan matriks awal, hasil normalisasi, dan nilai akhir/ranking calon penerima beasiswa.
 
 ## Struktur Dokumentasi
 

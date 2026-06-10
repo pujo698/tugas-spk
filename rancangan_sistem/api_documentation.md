@@ -6,7 +6,7 @@ Berikut adalah dokumentasi rute (URL Endpoint) yang diakses oleh peramban penggu
 
 | Endpoint | Method | Fungsi/Deskripsi | Controller |
 | -------- | ------ | ---------------- | ---------- |
-| `/` | `GET` | Menampilkan halaman Dashboard dan ringkasan Top Kandidat. | `DssController@dashboard` |
+| `/` | `GET` | Menampilkan halaman Dashboard dan ringkasan Top Kandidat Penerima Beasiswa. | `DssController@dashboard` |
 | `/students` | `GET` | Menampilkan daftar seluruh mahasiswa. | `StudentController@index` |
 | `/students/create` | `GET` | Menampilkan form input untuk menambah mahasiswa baru. | `StudentController@create` |
 | `/students` | `POST` | Menyimpan data mahasiswa baru ke database. | `StudentController@store` |

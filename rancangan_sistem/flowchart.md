@@ -1,10 +1,11 @@
 # Flowchart Proses Sistem
 
-Flowchart di bawah ini menggambarkan alur kerja (workflow) proses utama di dalam Sistem Pendukung Keputusan Pemilihan Mahasiswa Berprestasi dari awal inisialisasi master data hingga menghasilkan laporan akhir.
+Flowchart di bawah ini menggambarkan alur kerja (workflow) proses utama di dalam Sistem Pendukung Keputusan Seleksi Penerima Beasiswa Akademik dari awal inisialisasi master data hingga menghasilkan laporan akhir rekomendasi.
 
 ```mermaid
 flowchart TD
-    Start([Mulai]) --> InputKriteria["Input Data Kriteria<br/>(Benefit-Cost dan Bobot)"]
+    Start([Mulai]) --> Login["Login Admin / Tim Seleksi"]
+    Login --> InputKriteria["Input Data Kriteria<br/>(Benefit-Cost dan Bobot)"]
 
     InputKriteria --> InputMahasiswa["Input Data Mahasiswa"]
     InputMahasiswa --> PilihanImport{"Pilih Metode Input?"}
@@ -15,25 +16,27 @@ flowchart TD
     FormManual --> SimpanMhs["Simpan ke Database"]
     FileExcel --> SimpanMhs
 
-    SimpanMhs --> InputNilai["Input Nilai Evaluasi<br/>(Matriks Penilaian)"]
-    InputNilai --> DSSProses["Proses Metode DSS SAW"]
+    SimpanMhs --> InputNilai["Input Nilai Evaluasi / Kriteria<br/>(Matriks Penilaian)"]
+    InputNilai --> DSSProses["Proses Metode DSS SAW untuk Seleksi Beasiswa"]
 
     DSSProses --> Matriks["Bentuk Matriks Keputusan"]
     Matriks --> MinMax["Cari Nilai Min/Max tiap Kriteria"]
     MinMax --> Normalisasi["Normalisasi Matriks berdasarkan Tipe Kriteria"]
     Normalisasi --> KaliBobot["Kalikan Normalisasi dengan Bobot Kriteria"]
     KaliBobot --> SumSkor["Jumlahkan Total Skor Preferensi"]
-    SumSkor --> SortRanking["Urutkan Mahasiswa berdasarkan Skor"]
+    SumSkor --> SortRanking["Ranking Kandidat berdasarkan Skor Preferensi"]
 
-    SortRanking --> TampilHasil["Tampilkan Hasil dan Rekomendasi Ranking"]
-    TampilHasil --> Laporan["Cetak/Tampilkan Laporan"]
+    SortRanking --> PenentuanRekomendasi["Penentuan Rekomendasi Penerima Beasiswa"]
+    PenentuanRekomendasi --> TampilHasil["Tampilkan Hasil Ranking dan Daftar Rekomendasi"]
+    TampilHasil --> Laporan["Cetak Laporan Penerima Beasiswa"]
     Laporan --> End([Selesai])
 ```
 
 ## Deskripsi Flowchart
-1. **Mulai:** Admin memulai proses seleksi.
-2. **Input Kriteria:** Sistem memerlukan kriteria terlebih dahulu sebelum dapat dihubungkan ke penilaian.
-3. **Input Mahasiswa:** Admin mengisi data mahasiswa melalui metode manual atau upload Excel.
+1. **Mulai & Login:** Admin memulai proses seleksi dengan masuk ke dalam sistem.
+2. **Input Kriteria:** Sistem memerlukan kriteria (seperti IPK, Penghasilan Orang Tua) terlebih dahulu sebelum dapat dihubungkan ke penilaian.
+3. **Input Mahasiswa:** Admin mengisi data calon penerima beasiswa melalui metode manual atau upload Excel.
 4. **Input Penilaian:** Berbekal data mahasiswa dan kriteria, admin mengisi matriks nilai masing-masing.
 5. **Proses DSS:** Perhitungan otomatis (Metode SAW) berjalan di latar belakang (Bentuk Matriks, Cari Min/Max, Normalisasi, Kali Bobot).
-6. **Hasil & Rekomendasi:** Sistem memberikan urutan mahasiswa terbaik (Ranking) yang dapat menjadi acuan keputusan pihak akademik.
+6. **Hasil & Rekomendasi:** Sistem memberikan urutan mahasiswa terbaik (Ranking) yang dapat menjadi acuan keputusan pihak kampus untuk menentukan siapa yang berhak menerima beasiswa.
+7. **Cetak Laporan:** Laporan dapat dicetak sebagai bukti dokumentasi atau diserahkan ke pihak manajemen kampus.

@@ -2,7 +2,7 @@
 
 Dokumen ini memuat diagram sekuens (Sequence Diagram) yang memodelkan interaksi objek dari proses-proses utama yang ada di sistem berdasarkan implementasi framework Laravel.
 
-*Catatan: Fitur Login belum terimplementasi secara spesifik pada modul yang diberikan, sehingga fokus difokuskan pada fitur inti yang sudah aktif (CRUD Data, Proses Penilaian, dan Perhitungan DSS).*
+*Catatan: Fitur Login belum terimplementasi secara spesifik pada modul yang diberikan, namun disimulasikan sebagai bagian dari proses.*
 
 ## 1. Sequence Diagram: CRUD Data Mahasiswa (Contoh: Tambah Data)
 
@@ -15,7 +15,7 @@ sequenceDiagram
     participant Model as Student
     participant Database as Database
 
-    Admin->>View: Isi form data Mahasiswa & Klik "Simpan"
+    Admin->>View: Isi form data Mahasiswa (Calon Penerima) & Klik "Simpan"
     View->>Route: POST /students
     Route->>Controller: store(Request)
     Controller->>Controller: validate(Request)
@@ -42,7 +42,7 @@ sequenceDiagram
     participant Model as Assessment
     participant Database as Database
 
-    Admin->>View: Isi/Ubah nilai pada tabel & Klik "Simpan"
+    Admin->>View: Isi/Ubah nilai (IPK, dll) pada tabel & Klik "Simpan"
     View->>Route: POST /assessments
     Route->>Controller: store(Request)
 
@@ -58,7 +58,7 @@ sequenceDiagram
     Controller-->>View: Redirect back dengan Success Message
 ```
 
-## 3. Sequence Diagram: Proses Perhitungan DSS & Generate Ranking
+## 3. Sequence Diagram: Proses Perhitungan DSS & Generate Ranking Penerima Beasiswa
 
 ```mermaid
 sequenceDiagram
@@ -70,7 +70,7 @@ sequenceDiagram
     participant CriModel as Criterion
     participant AssModel as Assessment
 
-    Admin->>View: Klik menu "Hasil Perhitungan"
+    Admin->>View: Klik menu "Hasil Perhitungan Seleksi Beasiswa"
     View->>Route: GET /calculation
     Route->>Controller: calculation()
 
@@ -85,8 +85,8 @@ sequenceDiagram
 
     Controller->>Controller: Hitung Normalisasi (berdasarkan cost/benefit)
     Controller->>Controller: Hitung Skor Preferensi Akhir ($studentScore)
-    Controller->>Controller: Urutkan (usort) berdasarkan $studentScore tertinggi
+    Controller->>Controller: Urutkan (usort) berdasarkan skor tertinggi
 
     Controller-->>View: Return view('calculation.index', $sawData)
-    View-->>Admin: Menampilkan tabel hasil dan daftar ranking
+    View-->>Admin: Menampilkan tabel hasil dan daftar rekomendasi penerima beasiswa
 ```

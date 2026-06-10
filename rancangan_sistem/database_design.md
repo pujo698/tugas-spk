@@ -7,7 +7,7 @@ Berikut adalah desain tabel di dalam database berdasarkan file migrasi dari sour
 # Tabel `students`
 
 ## Tujuan
-Menyimpan data induk mahasiswa yang menjadi alternatif kandidat dalam sistem pendukung keputusan.
+Menyimpan data induk mahasiswa yang menjadi alternatif kandidat penerima beasiswa dalam sistem pendukung keputusan.
 
 ## Struktur
 

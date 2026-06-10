@@ -45,4 +45,4 @@ erDiagram
    Artinya, seorang mahasiswa akan memiliki banyak data nilai, yang masing-masing merupakan representasi dari kemampuannya terhadap kriteria tertentu.
 2. **Satu `CRITERION` memiliki banyak `ASSESSMENTS`:**
    Artinya, sebuah kriteria akan digunakan untuk mengevaluasi banyak mahasiswa, sehingga menghasilkan banyak baris nilai untuk kriteria tersebut.
-3. Tabel **`ASSESSMENTS`** menghubungkan keduanya melalui `student_id` dan `criterion_id` serta menyimpan nilai kuantitatif riil (`value`) untuk keperluan kalkulasi Algoritma SAW.
+3. Tabel **`ASSESSMENTS`** menghubungkan keduanya melalui `student_id` dan `criterion_id` serta menyimpan nilai kuantitatif riil (`value`) untuk keperluan kalkulasi Algoritma SAW untuk seleksi beasiswa.
